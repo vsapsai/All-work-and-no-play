@@ -8,6 +8,7 @@
 
 #import "UIElementUtilities.h"
 #import "AXValueWrapper.h"
+#import "NSAttributedString+Accessibility.h"
 
 @implementation UIElementUtilities
 
@@ -68,21 +69,11 @@
 	return result;
 }
 
-+ (NSAttributedString *)attributedStringFromAccessibilityAttributedString:(NSAttributedString *)accessibilityString
-{
-	NSAttributedString *result = nil;
-	if (nil != accessibilityString)
-	{
-		result = accessibilityString;//[[[NSAttributedString alloc] initWithString:[accessibilityString string]] autorelease];
-	}
-	return result;
-}
-
 + (NSAttributedString *)attributedStringOfUIElement:(AXUIElementRef)element atRange:(NSRange)range
 {
 	AXValueWrapper *rangeWrapper = [AXValueWrapper wrapperWithNSValue:[NSValue valueWithRange:range]];
 	NSAttributedString *attributedString = [UIElementUtilities valueOfParameterizedAttribute:NSAccessibilityAttributedStringForRangeParameterizedAttribute ofUIElement:element parameter:rangeWrapper.AXValue];
-	return [UIElementUtilities attributedStringFromAccessibilityAttributedString:attributedString];
+	return [attributedString attributedStringByUsingAppKitAttributes];
 }
 
 @end
