@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F739227815B0DD1300A064FE /* AXValueWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F739227715B0DD1300A064FE /* AXValueWrapper.m */; };
+		F739228415B0DFB000A064FE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F739228315B0DFB000A064FE /* SenTestingKit.framework */; };
+		F739228515B0DFB000A064FE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F73E779315A9984100CC3042 /* Cocoa.framework */; };
+		F739228B15B0DFB100A064FE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F739228915B0DFB100A064FE /* InfoPlist.strings */; };
+		F739229315B0DFF000A064FE /* AXValueWrapperTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = F739227B15B0DF3100A064FE /* AXValueWrapperTestCase.m */; };
+		F739229415B0E20200A064FE /* AXValueWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F739227715B0DD1300A064FE /* AXValueWrapper.m */; };
+		F73E779415A9984100CC3042 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F73E779315A9984100CC3042 /* Cocoa.framework */; };
+		F73E779E15A9984100CC3042 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F73E779C15A9984100CC3042 /* InfoPlist.strings */; };
+		F73E77A015A9984100CC3042 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F73E779F15A9984100CC3042 /* main.m */; };
+		F73E77A415A9984100CC3042 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F73E77A215A9984100CC3042 /* Credits.rtf */; };
+		F73E77A715A9984100CC3042 /* WPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F73E77A615A9984100CC3042 /* WPAppDelegate.m */; };
+		F73E77AA15A9984200CC3042 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F73E77A815A9984200CC3042 /* MainMenu.xib */; };
+		F73E77B215A99C5000CC3042 /* UIElementUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F73E77B115A99C5000CC3042 /* UIElementUtilities.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F739227615B0DD1300A064FE /* AXValueWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXValueWrapper.h; sourceTree = "<group>"; };
+		F739227715B0DD1300A064FE /* AXValueWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXValueWrapper.m; sourceTree = "<group>"; };
+		F739227B15B0DF3100A064FE /* AXValueWrapperTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXValueWrapperTestCase.m; sourceTree = "<group>"; };
+		F739228215B0DFB000A064FE /* Work-n-Play.UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Work-n-Play.UnitTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F739228315B0DFB000A064FE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F739228815B0DFB100A064FE /* Work-n-Play.UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Work-n-Play.UnitTests-Info.plist"; sourceTree = "<group>"; };
+		F739228A15B0DFB100A064FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F739228F15B0DFB100A064FE /* Work-n-Play.UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Work-n-Play.UnitTests-Prefix.pch"; sourceTree = "<group>"; };
+		F73E778F15A9984100CC3042 /* Work-n-Play.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Work-n-Play.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F73E779315A9984100CC3042 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F73E779615A9984100CC3042 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F73E779715A9984100CC3042 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F73E779815A9984100CC3042 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F73E779B15A9984100CC3042 /* Work-n-Play-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Work-n-Play-Info.plist"; sourceTree = "<group>"; };
+		F73E779D15A9984100CC3042 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F73E779F15A9984100CC3042 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F73E77A115A9984100CC3042 /* Work-n-Play-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Work-n-Play-Prefix.pch"; sourceTree = "<group>"; };
+		F73E77A315A9984100CC3042 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		F73E77A515A9984100CC3042 /* WPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WPAppDelegate.h; sourceTree = "<group>"; };
+		F73E77A615A9984100CC3042 /* WPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WPAppDelegate.m; sourceTree = "<group>"; };
+		F73E77A915A9984200CC3042 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F73E77B015A99C5000CC3042 /* UIElementUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIElementUtilities.h; sourceTree = "<group>"; };
+		F73E77B115A99C5000CC3042 /* UIElementUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIElementUtilities.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F739227E15B0DFB000A064FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F739228415B0DFB000A064FE /* SenTestingKit.framework in Frameworks */,
+				F739228515B0DFB000A064FE /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F73E778C15A9984100CC3042 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F73E779415A9984100CC3042 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F739228615B0DFB100A064FE /* Work-n-Play.UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				F739228715B0DFB100A064FE /* Supporting Files */,
+			);
+			path = "Work-n-Play.UnitTests";
+			sourceTree = "<group>";
+		};
+		F739228715B0DFB100A064FE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F739228815B0DFB100A064FE /* Work-n-Play.UnitTests-Info.plist */,
+				F739228915B0DFB100A064FE /* InfoPlist.strings */,
+				F739228F15B0DFB100A064FE /* Work-n-Play.UnitTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F73E778415A9984100CC3042 = {
+			isa = PBXGroup;
+			children = (
+				F73E779915A9984100CC3042 /* Work-n-Play */,
+				F739228615B0DFB100A064FE /* Work-n-Play.UnitTests */,
+				F73E779215A9984100CC3042 /* Frameworks */,
+				F73E779015A9984100CC3042 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F73E779015A9984100CC3042 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F73E778F15A9984100CC3042 /* Work-n-Play.app */,
+				F739228215B0DFB000A064FE /* Work-n-Play.UnitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F73E779215A9984100CC3042 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F73E779315A9984100CC3042 /* Cocoa.framework */,
+				F739228315B0DFB000A064FE /* SenTestingKit.framework */,
+				F73E779515A9984100CC3042 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F73E779515A9984100CC3042 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F73E779615A9984100CC3042 /* AppKit.framework */,
+				F73E779715A9984100CC3042 /* CoreData.framework */,
+				F73E779815A9984100CC3042 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F73E779915A9984100CC3042 /* Work-n-Play */ = {
+			isa = PBXGroup;
+			children = (
+				F73E77A515A9984100CC3042 /* WPAppDelegate.h */,
+				F73E77A615A9984100CC3042 /* WPAppDelegate.m */,
+				F73E77B015A99C5000CC3042 /* UIElementUtilities.h */,
+				F73E77B115A99C5000CC3042 /* UIElementUtilities.m */,
+				F739227615B0DD1300A064FE /* AXValueWrapper.h */,
+				F739227715B0DD1300A064FE /* AXValueWrapper.m */,
+				F739227B15B0DF3100A064FE /* AXValueWrapperTestCase.m */,
+				F73E77A815A9984200CC3042 /* MainMenu.xib */,
+				F73E779A15A9984100CC3042 /* Supporting Files */,
+			);
+			path = "Work-n-Play";
+			sourceTree = "<group>";
+		};
+		F73E779A15A9984100CC3042 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F73E779B15A9984100CC3042 /* Work-n-Play-Info.plist */,
+				F73E779C15A9984100CC3042 /* InfoPlist.strings */,
+				F73E779F15A9984100CC3042 /* main.m */,
+				F73E77A115A9984100CC3042 /* Work-n-Play-Prefix.pch */,
+				F73E77A215A9984100CC3042 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F739228115B0DFB000A064FE /* Work-n-Play.UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F739229015B0DFB100A064FE /* Build configuration list for PBXNativeTarget "Work-n-Play.UnitTests" */;
+			buildPhases = (
+				F739227D15B0DFB000A064FE /* Sources */,
+				F739227E15B0DFB000A064FE /* Frameworks */,
+				F739227F15B0DFB000A064FE /* Resources */,
+				F739228015B0DFB000A064FE /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Work-n-Play.UnitTests";
+			productName = "Work-n-Play.UnitTests";
+			productReference = F739228215B0DFB000A064FE /* Work-n-Play.UnitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		F73E778E15A9984100CC3042 /* Work-n-Play */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F73E77AD15A9984200CC3042 /* Build configuration list for PBXNativeTarget "Work-n-Play" */;
+			buildPhases = (
+				F73E778B15A9984100CC3042 /* Sources */,
+				F73E778C15A9984100CC3042 /* Frameworks */,
+				F73E778D15A9984100CC3042 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Work-n-Play";
+			productName = "Work-n-Play";
+			productReference = F73E778F15A9984100CC3042 /* Work-n-Play.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F73E778615A9984100CC3042 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = F73E778915A9984100CC3042 /* Build configuration list for PBXProject "Work-n-Play" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F73E778415A9984100CC3042;
+			productRefGroup = F73E779015A9984100CC3042 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F73E778E15A9984100CC3042 /* Work-n-Play */,
+				F739228115B0DFB000A064FE /* Work-n-Play.UnitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F739227F15B0DFB000A064FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F739228B15B0DFB100A064FE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F73E778D15A9984100CC3042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F73E779E15A9984100CC3042 /* InfoPlist.strings in Resources */,
+				F73E77A415A9984100CC3042 /* Credits.rtf in Resources */,
+				F73E77AA15A9984200CC3042 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F739228015B0DFB000A064FE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F739227D15B0DFB000A064FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F739229315B0DFF000A064FE /* AXValueWrapperTestCase.m in Sources */,
+				F739229415B0E20200A064FE /* AXValueWrapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F73E778B15A9984100CC3042 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F73E77A015A9984100CC3042 /* main.m in Sources */,
+				F73E77A715A9984100CC3042 /* WPAppDelegate.m in Sources */,
+				F73E77B215A99C5000CC3042 /* UIElementUtilities.m in Sources */,
+				F739227815B0DD1300A064FE /* AXValueWrapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F739228915B0DFB100A064FE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F739228A15B0DFB100A064FE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F73E779C15A9984100CC3042 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F73E779D15A9984100CC3042 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F73E77A215A9984100CC3042 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F73E77A315A9984100CC3042 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		F73E77A815A9984200CC3042 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F73E77A915A9984200CC3042 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F739229115B0DFB100A064FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Work-n-Play.UnitTests/Work-n-Play.UnitTests-Prefix.pch";
+				INFOPLIST_FILE = "Work-n-Play.UnitTests/Work-n-Play.UnitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F739229215B0DFB100A064FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Work-n-Play.UnitTests/Work-n-Play.UnitTests-Prefix.pch";
+				INFOPLIST_FILE = "Work-n-Play.UnitTests/Work-n-Play.UnitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		F73E77AB15A9984200CC3042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F73E77AC15A9984200CC3042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F73E77AE15A9984200CC3042 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Work-n-Play/Work-n-Play-Prefix.pch";
+				INFOPLIST_FILE = "Work-n-Play/Work-n-Play-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F73E77AF15A9984200CC3042 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Work-n-Play/Work-n-Play-Prefix.pch";
+				INFOPLIST_FILE = "Work-n-Play/Work-n-Play-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F739229015B0DFB100A064FE /* Build configuration list for PBXNativeTarget "Work-n-Play.UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F739229115B0DFB100A064FE /* Debug */,
+				F739229215B0DFB100A064FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F73E778915A9984100CC3042 /* Build configuration list for PBXProject "Work-n-Play" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F73E77AB15A9984200CC3042 /* Debug */,
+				F73E77AC15A9984200CC3042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F73E77AD15A9984200CC3042 /* Build configuration list for PBXNativeTarget "Work-n-Play" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F73E77AE15A9984200CC3042 /* Debug */,
+				F73E77AF15A9984200CC3042 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F73E778615A9984100CC3042 /* Project object */;
+}
