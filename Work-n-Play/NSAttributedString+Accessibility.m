@@ -35,6 +35,17 @@ NSDictionary *ConvertToAppKitAttributes(NSDictionary *accessibilityAttributes)
 	if (NULL != foregroundColor)
 	{
 		[result setObject:CGColorRefToNSColor(foregroundColor) forKey:NSForegroundColorAttributeName];
+		[result removeObjectForKey:NSAccessibilityForegroundColorTextAttribute];
+	}
+	// NSAccessibilityFontTextAttribute
+	NSDictionary *fontAttributes = [accessibilityAttributes objectForKey:NSAccessibilityFontTextAttribute];
+	if (nil != fontAttributes)
+	{
+		NSString *fontName = [fontAttributes objectForKey:NSAccessibilityFontNameKey];
+		CGFloat fontSize = [[fontAttributes objectForKey:NSAccessibilityFontSizeKey] doubleValue];
+		NSFont *font = [NSFont fontWithName:fontName size:fontSize];
+		[result setObject:font forKey:NSFontAttributeName];
+		[result removeObjectForKey:NSAccessibilityFontTextAttribute];
 	}
 	return [[result copy] autorelease];
 }
