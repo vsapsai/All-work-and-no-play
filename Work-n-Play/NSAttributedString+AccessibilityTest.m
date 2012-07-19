@@ -33,7 +33,7 @@
 	return [[[NSAttributedString alloc] initWithString:@"test" attributes:attributes] autorelease];
 }
 
-- (void)testForegroundColorAttribute
+- (void)disable_testForegroundColorAttribute
 {
 	NSAttributedString *attributedString = [self defaultAttributedStringWithValue:[NSColor redColor] forAttribute:NSForegroundColorAttributeName];
 	NSAttributedString *accessibilityString = [self accessibilityAttributedStringFromAttributedString:attributedString];
