@@ -9,6 +9,7 @@
 #import "WPAppDelegate.h"
 #import "UIElementUtilities.h"
 #import "WPPatternApplicator.h"
+#import "WPWindowRepresentation.h"
 
 
 static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.Xcode";
@@ -55,12 +56,25 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	return result;
 }
 
+- (void)storeFrontMostWindowScreenshot:(pid_t)applicationPid
+{
+	NSArray *windows = [WPWindowRepresentation windowRepresentationsForApplicationWithPid:applicationPid];
+	if ([windows count] > 0)
+	{
+		WPWindowRepresentation *frontMostWindow = [windows objectAtIndex:0];
+		NSBitmapImageRep *windowScreenShot = [frontMostWindow windowImageRep];
+		[[windowScreenShot TIFFRepresentation] writeToFile:@"/Users/vsapsay/Desktop/xcode.tiff" atomically:YES];
+	}
+}
+
 - (IBAction)run:(id)sender
 {
 	NSRunningApplication *application = [[NSRunningApplication runningApplicationsWithBundleIdentifier:kWPObservedApplicationBundleIdentifier] lastObject];
 	pid_t applicationPid = application.processIdentifier;
 	if (-1 != applicationPid)
 	{
+		[self storeFrontMostWindowScreenshot:applicationPid];
+
 		AXUIElementRef applicationElement = AXUIElementCreateApplication(applicationPid);
 		if (NULL != applicationElement)
 		{
