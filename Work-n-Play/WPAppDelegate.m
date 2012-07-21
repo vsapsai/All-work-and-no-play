@@ -8,6 +8,7 @@
 
 #import "WPAppDelegate.h"
 #import "UIElementUtilities.h"
+#import "WPPatternApplicator.h"
 
 
 @interface WPAppDelegate()
@@ -87,49 +88,12 @@
 
 #pragma mark -
 
-- (BOOL)isUpperCaseCharacter:(unichar)character
-{
-	return (('A' <= character) && (character <= 'Z'));
-}
-
-- (BOOL)isLowerCaseCharacter:(unichar)character
-{
-	return (('a' <= character) && (character <= 'z'));
-}
-
-- (NSArray *)splitStringIntoCharacters:(NSString *)string
-{
-	NSMutableArray *result = [NSMutableArray arrayWithCapacity:[string length]];
-	for (NSInteger i = 0; i < [string length]; i++)
-	{
-		[result addObject:[string substringWithRange:NSMakeRange(i, 1)]];
-	}
-	return [[result copy] autorelease];
-}
-
 - (NSAttributedString *)allWorkAndNoPlayStringFrom:(NSAttributedString *)string
 {
 	NSParameterAssert(nil != string);
 	NSString *pattern = @"All work and no play makes Jack a dull boy";
-	NSArray *patternArray = [self splitStringIntoCharacters:[[pattern stringByReplacingOccurrencesOfString:@" " withString:@""] lowercaseString]];
-	NSInteger patternIndex = 0;
-	NSMutableAttributedString *result = [[string mutableCopy] autorelease];
-	NSString *plainString = [string string];
-	for (NSInteger i = 0; i < [plainString length]; i++)
-	{
-		unichar character = [plainString characterAtIndex:i];
-		if ([self isLowerCaseCharacter:character])
-		{
-			[result replaceCharactersInRange:NSMakeRange(i, 1) withString:[patternArray objectAtIndex:patternIndex]];
-			patternIndex = ((patternIndex + 1) % [patternArray count]);
-		}
-		else if ([self isUpperCaseCharacter:character])
-		{
-			[result replaceCharactersInRange:NSMakeRange(i, 1) withString:[[patternArray objectAtIndex:patternIndex] uppercaseString]];
-			patternIndex = ((patternIndex + 1) % [patternArray count]);
-		}
-	}
-	return [[result copy] autorelease];
+	WPPatternApplicator *patternApplicator = [[[WPPatternApplicator alloc] initWithPattern:pattern attributedString:string] autorelease];
+	return [patternApplicator attributedStringByApplyingPattern];
 }
 
 @end
