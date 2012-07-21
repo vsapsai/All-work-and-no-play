@@ -11,6 +11,8 @@
 #import "WPPatternApplicator.h"
 
 
+static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.Xcode";
+
 @interface WPAppDelegate()
 - (NSAttributedString *)allWorkAndNoPlayStringFrom:(NSAttributedString *)string;
 @end
@@ -55,14 +57,14 @@
 
 - (IBAction)run:(id)sender
 {
-	NSRunningApplication *xcodeApplication = [[NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.apple.dt.Xcode"] lastObject];
-	pid_t xcodePid = xcodeApplication.processIdentifier;
-	if (-1 != xcodePid)
+	NSRunningApplication *application = [[NSRunningApplication runningApplicationsWithBundleIdentifier:kWPObservedApplicationBundleIdentifier] lastObject];
+	pid_t applicationPid = application.processIdentifier;
+	if (-1 != applicationPid)
 	{
-		AXUIElementRef xcodeElement = AXUIElementCreateApplication(xcodePid);
-		if (NULL != xcodeElement)
+		AXUIElementRef applicationElement = AXUIElementCreateApplication(applicationPid);
+		if (NULL != applicationElement)
 		{
-			AXUIElementRef textAreaElement = [self textAreaElement:xcodeElement];
+			AXUIElementRef textAreaElement = [self textAreaElement:applicationElement];
 			if (NULL != textAreaElement)
 			{
 				NSString *text = [UIElementUtilities valueOfUIElement:textAreaElement];
@@ -73,16 +75,16 @@
 			{
 				NSLog(@"Didn't found text area");
 			}
-			CFRelease(xcodeElement);
+			CFRelease(applicationElement);
 		}
 		else
 		{
-			NSLog(@"Failed to create Xcode AXUIElementRef");
+			NSLog(@"Failed to create application AXUIElementRef");
 		}
 	}
 	else
 	{
-		NSLog(@"Xcode isn't launched");
+		NSLog(@"%@ isn't launched", kWPObservedApplicationBundleIdentifier);
 	}
 }
 
