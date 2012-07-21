@@ -111,6 +111,21 @@
 	return [[result copy] autorelease];
 }
 
+- (BOOL)shouldReplaceWord:(NSString *)word
+{
+	static NSSet *sReservedWords = nil;
+	if (nil == sReservedWords)
+	{
+		sReservedWords = [[NSSet setWithObjects:@"BOOL", @"id", @"nil", @"self", @"super", @"NULL",
+						   @"IBOutlet", @"IBAction", @"pragma", @"import",
+						   @"if", @"else", @"while", @"for", @"do", @"switch", @"case",
+						   @"return", @"break", nil] retain];
+	}
+	BOOL shouldKeep = ([word hasPrefix:@"NS"] || [word hasPrefix:@"CF"] ||
+					   [sReservedWords containsObject:word]);
+	return !shouldKeep;
+}
+
 - (NSAttributedString *)attributedStringByApplyingPattern
 {
 	NSMutableAttributedString *result = [[self.attributedString mutableCopy] autorelease];
@@ -119,14 +134,21 @@
 	WPToken *wordToken = [self nextWordTokenStartingFromPosition:currentPosition inString:[result string]];
 	while (nil != wordToken)
 	{
-		// Find how to replace token.
-		NSArray *replacementComponents = [self componentsFromArray:self.pattern startingFromIndex:patternPosition toFillLength:wordToken.range.length];
-		patternPosition = (patternPosition + [replacementComponents count]) % [self.pattern count];
-		NSString *replacement = [self componentsJoinedInCamelCaseStyle:replacementComponents];
-		// Replace token.
-		[result replaceCharactersInRange:wordToken.range withString:replacement];
-		// Advance position.
-		currentPosition = wordToken.range.location + [replacement length];
+		if ([self shouldReplaceWord:wordToken.content])
+		{
+			// Find how to replace token.
+			NSArray *replacementComponents = [self componentsFromArray:self.pattern startingFromIndex:patternPosition toFillLength:wordToken.range.length];
+			patternPosition = (patternPosition + [replacementComponents count]) % [self.pattern count];
+			NSString *replacement = [self componentsJoinedInCamelCaseStyle:replacementComponents];
+			// Replace token.
+			[result replaceCharactersInRange:wordToken.range withString:replacement];
+			// Advance position.
+			currentPosition = wordToken.range.location + [replacement length];
+		}
+		else
+		{
+			currentPosition = NSMaxRange(wordToken.range);
+		}
 		wordToken = [self nextWordTokenStartingFromPosition:currentPosition inString:[result string]];
 	}
 	return [[result copy] autorelease];
