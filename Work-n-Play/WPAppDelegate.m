@@ -55,6 +55,12 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	return result;
 }
 
+- (WPWindowRepresentation *)frontMostVisibleWindowForApplication:(pid_t)applicationPid
+{
+	NSArray *windows = [WPWindowRepresentation windowRepresentationsForApplicationWithPid:applicationPid];
+	return (([windows count] > 0) ? [windows objectAtIndex:0] : nil);
+}
+
 - (void)storeFrontMostWindowScreenshot:(pid_t)applicationPid
 {
 	NSArray *windows = [WPWindowRepresentation windowRepresentationsForApplicationWithPid:applicationPid];
@@ -64,6 +70,36 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 		NSBitmapImageRep *windowScreenShot = [frontMostWindow windowImageRep];
 		[[windowScreenShot TIFFRepresentation] writeToFile:@"/Users/vsapsay/Desktop/xcode.tiff" atomically:YES];
 	}
+}
+
+- (NSImage *)imageWithImageRep:(NSImageRep *)imageRep
+{
+	NSImage *result = nil;
+	if (nil != imageRep)
+	{
+		result = [[[NSImage alloc] initWithSize:imageRep.size] autorelease];
+		[result addRepresentation:imageRep];
+	}
+	return result;
+}
+
+- (void)storeWindowScreenshot:(WPWindowRepresentation *)window withTestingStuffInRect:(NSRect)rect
+{
+	NSBitmapImageRep *windowImageRep = [window windowImageRep];
+	NSImage *windowImage = [self imageWithImageRep:windowImageRep];
+
+	// Draw testing stuff.
+	[windowImage lockFocusFlipped:YES];
+	[NSGraphicsContext saveGraphicsState];
+	NSRect windowBounds = window.windowBounds;
+	NSRect rectInWindow = NSMakeRect(rect.origin.x - windowBounds.origin.x, rect.origin.y - windowBounds.origin.y, rect.size.width, rect.size.height);
+	[[NSColor greenColor] set];
+	NSRectFill(rectInWindow);
+	[NSGraphicsContext restoreGraphicsState];
+	[windowImage unlockFocus];
+
+	// Store image.
+	[[windowImage TIFFRepresentation] writeToFile:@"/Users/vsapsay/Desktop/xcode.tiff" atomically:YES];
 }
 
 - (IBAction)run:(id)sender
@@ -87,7 +123,9 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 					if (nil != bounds)
 					{
 						NSRect boundsRect = [bounds rectValue];
-						NSLog(@"visible rect = %@", NSStringFromRect(boundsRect));
+						//NSLog(@"visible rect = %@", NSStringFromRect(boundsRect));
+						WPWindowRepresentation *window = [self frontMostVisibleWindowForApplication:applicationPid];
+						[self storeWindowScreenshot:window withTestingStuffInRect:boundsRect];
 					}
 				}
 
