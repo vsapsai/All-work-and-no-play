@@ -41,7 +41,7 @@
 	AXValueWrapper *rangeWrapper = [AXValueWrapper wrapperWithAXValueRef:rangeValueRef];
 	CFRelease(rangeValueRef);
 	NSValue *expectedRangeValue = [NSValue valueWithRange:NSMakeRange(0, 7)];
-	STAssertTrue([rangeWrapper.value isEqualToValue:expectedRangeValue], nil);
+	STAssertEqualObjects(rangeWrapper.value, expectedRangeValue, nil);
 }
 
 - (void)testRangeNSValue
@@ -49,7 +49,7 @@
 	NSValue *rangeValue = [NSValue valueWithRange:NSMakeRange(0, 7)];
 	AXValueWrapper *rangeWrapper = [AXValueWrapper wrapperWithNSValue:rangeValue];
 	AXValueWrapper *otherRangeWrapper = [AXValueWrapper wrapperWithAXValueRef:rangeWrapper.AXValue];
-	STAssertTrue([otherRangeWrapper.value isEqualToValue:rangeValue], nil);
+	STAssertEqualObjects(otherRangeWrapper.value, rangeValue, nil);
 }
 
 #pragma mark -
