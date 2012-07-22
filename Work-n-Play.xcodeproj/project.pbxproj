@@ -150,21 +150,10 @@
 			children = (
 				F73E77A515A9984100CC3042 /* WPAppDelegate.h */,
 				F73E77A615A9984100CC3042 /* WPAppDelegate.m */,
-				F787D66E15B8C1BE007CE47B /* WPPatternApplicator.h */,
-				F787D66F15B8C1BE007CE47B /* WPPatternApplicator.m */,
-				F79438F515BB221000E5487A /* WPPatternApplicatorTest.m */,
-				F79438F915BB278B00E5487A /* WPToken.h */,
-				F79438FA15BB278B00E5487A /* WPToken.m */,
 				F794390115BB4E3E00E5487A /* WPWindowRepresentation.h */,
 				F794390215BB4E3E00E5487A /* WPWindowRepresentation.m */,
-				F794390415BC026400E5487A /* AXUIElementWrapper.h */,
-				F794390515BC026400E5487A /* AXUIElementWrapper.m */,
-				F739227615B0DD1300A064FE /* AXValueWrapper.h */,
-				F739227715B0DD1300A064FE /* AXValueWrapper.m */,
-				F739227B15B0DF3100A064FE /* AXValueWrapperTest.m */,
-				F7961ABD15B1B3F000FE870A /* NSAttributedString+Accessibility.h */,
-				F7961ABE15B1B3F000FE870A /* NSAttributedString+Accessibility.m */,
-				F7961AC215B1B70300FE870A /* NSAttributedString+AccessibilityTest.m */,
+				F794390815BC19B900E5487A /* Pattern Applicator */,
+				F794390715BC197800E5487A /* Accessibility Wrappers */,
 				F73E77A815A9984200CC3042 /* MainMenu.xib */,
 				F73E779A15A9984100CC3042 /* Supporting Files */,
 			);
@@ -181,6 +170,33 @@
 				F73E77A215A9984100CC3042 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F794390715BC197800E5487A /* Accessibility Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				F794390415BC026400E5487A /* AXUIElementWrapper.h */,
+				F794390515BC026400E5487A /* AXUIElementWrapper.m */,
+				F739227615B0DD1300A064FE /* AXValueWrapper.h */,
+				F739227715B0DD1300A064FE /* AXValueWrapper.m */,
+				F739227B15B0DF3100A064FE /* AXValueWrapperTest.m */,
+				F7961ABD15B1B3F000FE870A /* NSAttributedString+Accessibility.h */,
+				F7961ABE15B1B3F000FE870A /* NSAttributedString+Accessibility.m */,
+				F7961AC215B1B70300FE870A /* NSAttributedString+AccessibilityTest.m */,
+			);
+			name = "Accessibility Wrappers";
+			sourceTree = "<group>";
+		};
+		F794390815BC19B900E5487A /* Pattern Applicator */ = {
+			isa = PBXGroup;
+			children = (
+				F787D66E15B8C1BE007CE47B /* WPPatternApplicator.h */,
+				F787D66F15B8C1BE007CE47B /* WPPatternApplicator.m */,
+				F79438F515BB221000E5487A /* WPPatternApplicatorTest.m */,
+				F79438F915BB278B00E5487A /* WPToken.h */,
+				F79438FA15BB278B00E5487A /* WPToken.m */,
+			);
+			name = "Pattern Applicator";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
