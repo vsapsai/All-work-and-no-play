@@ -19,13 +19,13 @@
 		F73E77A415A9984100CC3042 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F73E77A215A9984100CC3042 /* Credits.rtf */; };
 		F73E77A715A9984100CC3042 /* WPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F73E77A615A9984100CC3042 /* WPAppDelegate.m */; };
 		F73E77AA15A9984200CC3042 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F73E77A815A9984200CC3042 /* MainMenu.xib */; };
-		F73E77B215A99C5000CC3042 /* UIElementUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F73E77B115A99C5000CC3042 /* UIElementUtilities.m */; };
 		F787D67015B8C1BF007CE47B /* WPPatternApplicator.m in Sources */ = {isa = PBXBuildFile; fileRef = F787D66F15B8C1BE007CE47B /* WPPatternApplicator.m */; };
 		F79438F615BB221000E5487A /* WPPatternApplicatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F79438F515BB221000E5487A /* WPPatternApplicatorTest.m */; };
 		F79438F815BB237500E5487A /* WPPatternApplicator.m in Sources */ = {isa = PBXBuildFile; fileRef = F787D66F15B8C1BE007CE47B /* WPPatternApplicator.m */; };
 		F79438FB15BB278B00E5487A /* WPToken.m in Sources */ = {isa = PBXBuildFile; fileRef = F79438FA15BB278B00E5487A /* WPToken.m */; };
 		F79438FC15BB278B00E5487A /* WPToken.m in Sources */ = {isa = PBXBuildFile; fileRef = F79438FA15BB278B00E5487A /* WPToken.m */; };
 		F794390315BB4E3F00E5487A /* WPWindowRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = F794390215BB4E3E00E5487A /* WPWindowRepresentation.m */; };
+		F794390615BC026500E5487A /* AXUIElementWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F794390515BC026400E5487A /* AXUIElementWrapper.m */; };
 		F7961ABF15B1B3F000FE870A /* NSAttributedString+Accessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = F7961ABE15B1B3F000FE870A /* NSAttributedString+Accessibility.m */; };
 		F7961AC315B1B70300FE870A /* NSAttributedString+AccessibilityTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7961AC215B1B70300FE870A /* NSAttributedString+AccessibilityTest.m */; };
 		F7961AC415B1BC1C00FE870A /* NSAttributedString+Accessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = F7961ABE15B1B3F000FE870A /* NSAttributedString+Accessibility.m */; };
@@ -53,8 +53,6 @@
 		F73E77A515A9984100CC3042 /* WPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WPAppDelegate.h; sourceTree = "<group>"; };
 		F73E77A615A9984100CC3042 /* WPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WPAppDelegate.m; sourceTree = "<group>"; };
 		F73E77A915A9984200CC3042 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		F73E77B015A99C5000CC3042 /* UIElementUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIElementUtilities.h; sourceTree = "<group>"; };
-		F73E77B115A99C5000CC3042 /* UIElementUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIElementUtilities.m; sourceTree = "<group>"; };
 		F787D66E15B8C1BE007CE47B /* WPPatternApplicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPatternApplicator.h; sourceTree = "<group>"; };
 		F787D66F15B8C1BE007CE47B /* WPPatternApplicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPatternApplicator.m; sourceTree = "<group>"; };
 		F79438F515BB221000E5487A /* WPPatternApplicatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPatternApplicatorTest.m; sourceTree = "<group>"; };
@@ -62,6 +60,8 @@
 		F79438FA15BB278B00E5487A /* WPToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPToken.m; sourceTree = "<group>"; };
 		F794390115BB4E3E00E5487A /* WPWindowRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPWindowRepresentation.h; sourceTree = "<group>"; };
 		F794390215BB4E3E00E5487A /* WPWindowRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPWindowRepresentation.m; sourceTree = "<group>"; };
+		F794390415BC026400E5487A /* AXUIElementWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXUIElementWrapper.h; sourceTree = "<group>"; };
+		F794390515BC026400E5487A /* AXUIElementWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXUIElementWrapper.m; sourceTree = "<group>"; };
 		F7961ABD15B1B3F000FE870A /* NSAttributedString+Accessibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Accessibility.h"; sourceTree = "<group>"; };
 		F7961ABE15B1B3F000FE870A /* NSAttributedString+Accessibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Accessibility.m"; sourceTree = "<group>"; };
 		F7961AC215B1B70300FE870A /* NSAttributedString+AccessibilityTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+AccessibilityTest.m"; sourceTree = "<group>"; };
@@ -157,8 +157,8 @@
 				F79438FA15BB278B00E5487A /* WPToken.m */,
 				F794390115BB4E3E00E5487A /* WPWindowRepresentation.h */,
 				F794390215BB4E3E00E5487A /* WPWindowRepresentation.m */,
-				F73E77B015A99C5000CC3042 /* UIElementUtilities.h */,
-				F73E77B115A99C5000CC3042 /* UIElementUtilities.m */,
+				F794390415BC026400E5487A /* AXUIElementWrapper.h */,
+				F794390515BC026400E5487A /* AXUIElementWrapper.m */,
 				F739227615B0DD1300A064FE /* AXValueWrapper.h */,
 				F739227715B0DD1300A064FE /* AXValueWrapper.m */,
 				F739227B15B0DF3100A064FE /* AXValueWrapperTest.m */,
@@ -305,12 +305,12 @@
 			files = (
 				F73E77A015A9984100CC3042 /* main.m in Sources */,
 				F73E77A715A9984100CC3042 /* WPAppDelegate.m in Sources */,
-				F73E77B215A99C5000CC3042 /* UIElementUtilities.m in Sources */,
 				F739227815B0DD1300A064FE /* AXValueWrapper.m in Sources */,
 				F7961ABF15B1B3F000FE870A /* NSAttributedString+Accessibility.m in Sources */,
 				F787D67015B8C1BF007CE47B /* WPPatternApplicator.m in Sources */,
 				F79438FB15BB278B00E5487A /* WPToken.m in Sources */,
 				F794390315BB4E3F00E5487A /* WPWindowRepresentation.m in Sources */,
+				F794390615BC026500E5487A /* AXUIElementWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

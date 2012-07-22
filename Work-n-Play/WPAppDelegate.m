@@ -7,7 +7,7 @@
 //
 
 #import "WPAppDelegate.h"
-#import "UIElementUtilities.h"
+#import "AXUIElementWrapper.h"
 #import "WPPatternApplicator.h"
 #import "WPWindowRepresentation.h"
 
@@ -33,21 +33,20 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	// Insert code here to initialize your application
 }
 
-- (AXUIElementRef)textAreaElement:(AXUIElementRef)uiElement
+- (AXUIElementWrapper *)textAreaElement:(AXUIElementWrapper *)uiElement
 {
-	AXUIElementRef result = NULL;
-	if ([[UIElementUtilities roleOfUIElement:uiElement] isEqualToString:NSAccessibilityTextAreaRole])
+	AXUIElementWrapper *result = nil;
+	if ([[uiElement role] isEqualToString:NSAccessibilityTextAreaRole])
 	{
 		result = uiElement;
 	}
 	else
 	{
-		NSArray *children = [UIElementUtilities childrenOfUIElement:uiElement];
-		for (NSInteger i = 0; i < [children count]; i++)
+		NSArray *children = [uiElement children];
+		for (AXUIElementWrapper *child in children)
 		{
-			AXUIElementRef child = (AXUIElementRef)[children objectAtIndex:i];
 			result = [self textAreaElement:child];
-			if (NULL != result)
+			if (nil != result)
 			{
 				break;
 			}
@@ -75,16 +74,16 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	{
 		//[self storeFrontMostWindowScreenshot:applicationPid];
 
-		AXUIElementRef applicationElement = AXUIElementCreateApplication(applicationPid);
-		if (NULL != applicationElement)
+		AXUIElementWrapper *applicationElement = [AXUIElementWrapper wrapperForApplication:applicationPid];
+		if (nil != applicationElement)
 		{
-			AXUIElementRef textAreaElement = [self textAreaElement:applicationElement];
-			if (NULL != textAreaElement)
+			AXUIElementWrapper *textAreaElement = [self textAreaElement:applicationElement];
+			if (nil != textAreaElement)
 			{
-				NSValue *visibleRange = [UIElementUtilities visibleCharacterRangeOfUIElement:textAreaElement];
+				NSValue *visibleRange = [textAreaElement visibleCharacterRange];
 				if (nil != visibleRange)
 				{
-					NSValue *bounds = [UIElementUtilities boundsOfUIElement:textAreaElement forRange:[visibleRange rangeValue]];
+					NSValue *bounds = [textAreaElement boundsForRange:[visibleRange rangeValue]];
 					if (nil != bounds)
 					{
 						NSRect boundsRect = [bounds rectValue];
@@ -92,19 +91,18 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 					}
 				}
 
-				NSString *text = [UIElementUtilities valueOfUIElement:textAreaElement];
-				NSAttributedString *textAreaContent = [UIElementUtilities attributedStringOfUIElement:textAreaElement atRange:NSMakeRange(0, [text length])];
+				NSString *text = [textAreaElement elementValue];
+				NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:NSMakeRange(0, [text length])];
 				[[self.textView textStorage] setAttributedString:[self allWorkAndNoPlayStringFrom:textAreaContent]];
 			}
 			else
 			{
 				NSLog(@"Didn't found text area");
 			}
-			CFRelease(applicationElement);
 		}
 		else
 		{
-			NSLog(@"Failed to create application AXUIElementRef");
+			NSLog(@"Failed to create application AXUIElementWrapper");
 		}
 	}
 	else
