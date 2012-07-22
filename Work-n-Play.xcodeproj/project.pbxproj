@@ -11,7 +11,7 @@
 		F739228415B0DFB000A064FE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F739228315B0DFB000A064FE /* SenTestingKit.framework */; };
 		F739228515B0DFB000A064FE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F73E779315A9984100CC3042 /* Cocoa.framework */; };
 		F739228B15B0DFB100A064FE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F739228915B0DFB100A064FE /* InfoPlist.strings */; };
-		F739229315B0DFF000A064FE /* AXValueWrapperTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = F739227B15B0DF3100A064FE /* AXValueWrapperTestCase.m */; };
+		F739229315B0DFF000A064FE /* AXValueWrapperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F739227B15B0DF3100A064FE /* AXValueWrapperTest.m */; };
 		F739229415B0E20200A064FE /* AXValueWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F739227715B0DD1300A064FE /* AXValueWrapper.m */; };
 		F73E779415A9984100CC3042 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F73E779315A9984100CC3042 /* Cocoa.framework */; };
 		F73E779E15A9984100CC3042 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F73E779C15A9984100CC3042 /* InfoPlist.strings */; };
@@ -34,7 +34,7 @@
 /* Begin PBXFileReference section */
 		F739227615B0DD1300A064FE /* AXValueWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXValueWrapper.h; sourceTree = "<group>"; };
 		F739227715B0DD1300A064FE /* AXValueWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXValueWrapper.m; sourceTree = "<group>"; };
-		F739227B15B0DF3100A064FE /* AXValueWrapperTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXValueWrapperTestCase.m; sourceTree = "<group>"; };
+		F739227B15B0DF3100A064FE /* AXValueWrapperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXValueWrapperTest.m; sourceTree = "<group>"; };
 		F739228215B0DFB000A064FE /* Work-n-Play.UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Work-n-Play.UnitTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F739228315B0DFB000A064FE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F739228815B0DFB100A064FE /* Work-n-Play.UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Work-n-Play.UnitTests-Info.plist"; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 				F73E77B115A99C5000CC3042 /* UIElementUtilities.m */,
 				F739227615B0DD1300A064FE /* AXValueWrapper.h */,
 				F739227715B0DD1300A064FE /* AXValueWrapper.m */,
-				F739227B15B0DF3100A064FE /* AXValueWrapperTestCase.m */,
+				F739227B15B0DF3100A064FE /* AXValueWrapperTest.m */,
 				F7961ABD15B1B3F000FE870A /* NSAttributedString+Accessibility.h */,
 				F7961ABE15B1B3F000FE870A /* NSAttributedString+Accessibility.m */,
 				F7961AC215B1B70300FE870A /* NSAttributedString+AccessibilityTest.m */,
@@ -289,7 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F739229315B0DFF000A064FE /* AXValueWrapperTestCase.m in Sources */,
+				F739229315B0DFF000A064FE /* AXValueWrapperTest.m in Sources */,
 				F739229415B0E20200A064FE /* AXValueWrapper.m in Sources */,
 				F7961AC315B1B70300FE870A /* NSAttributedString+AccessibilityTest.m in Sources */,
 				F7961AC415B1BC1C00FE870A /* NSAttributedString+Accessibility.m in Sources */,

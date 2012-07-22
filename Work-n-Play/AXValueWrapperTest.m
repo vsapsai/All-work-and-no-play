@@ -1,5 +1,5 @@
 //
-//  AXValueWrapperTestCase.m
+//  AXValueWrapperTest.m
 //  Work-n-Play
 //
 //  Created by Volodymyr Sapsai on 7/14/12.
@@ -9,10 +9,10 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import "AXValueWrapper.h"
 
-@interface AXValueWrapperTestCase : SenTestCase
+@interface AXValueWrapperTest : SenTestCase
 @end
 
-@implementation AXValueWrapperTestCase
+@implementation AXValueWrapperTest
 
 #pragma mark -
 
