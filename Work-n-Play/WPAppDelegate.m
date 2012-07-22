@@ -73,7 +73,7 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	pid_t applicationPid = application.processIdentifier;
 	if (-1 != applicationPid)
 	{
-		[self storeFrontMostWindowScreenshot:applicationPid];
+		//[self storeFrontMostWindowScreenshot:applicationPid];
 
 		AXUIElementRef applicationElement = AXUIElementCreateApplication(applicationPid);
 		if (NULL != applicationElement)
@@ -81,6 +81,17 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 			AXUIElementRef textAreaElement = [self textAreaElement:applicationElement];
 			if (NULL != textAreaElement)
 			{
+				NSValue *visibleRange = [UIElementUtilities visibleCharacterRangeOfUIElement:textAreaElement];
+				if (nil != visibleRange)
+				{
+					NSValue *bounds = [UIElementUtilities boundsOfUIElement:textAreaElement forRange:[visibleRange rangeValue]];
+					if (nil != bounds)
+					{
+						NSRect boundsRect = [bounds rectValue];
+						NSLog(@"visible rect = %@", NSStringFromRect(boundsRect));
+					}
+				}
+
 				NSString *text = [UIElementUtilities valueOfUIElement:textAreaElement];
 				NSAttributedString *textAreaContent = [UIElementUtilities attributedStringOfUIElement:textAreaElement atRange:NSMakeRange(0, [text length])];
 				[[self.textView textStorage] setAttributedString:[self allWorkAndNoPlayStringFrom:textAreaContent]];

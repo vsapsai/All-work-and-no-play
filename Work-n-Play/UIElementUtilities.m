@@ -48,6 +48,13 @@
 	return [UIElementUtilities valueOfAttribute:NSAccessibilityValueAttribute ofUIElement:element];
 }
 
++ (NSValue *)visibleCharacterRangeOfUIElement:(AXUIElementRef)element
+{
+	AXValueRef rangeRef = (AXValueRef)[UIElementUtilities valueOfAttribute:NSAccessibilityVisibleCharacterRangeAttribute ofUIElement:element];
+	AXValueWrapper *rangeWrapper = [AXValueWrapper wrapperWithAXValueRef:rangeRef];
+	return rangeWrapper.value;
+}
+
 #pragma mark Parameterized attributes
 
 + (NSArray *)parameterizedAttributeNamesOfUIElement:(AXUIElementRef)element
@@ -74,6 +81,14 @@
 	AXValueWrapper *rangeWrapper = [AXValueWrapper wrapperWithNSValue:[NSValue valueWithRange:range]];
 	NSAttributedString *attributedString = [UIElementUtilities valueOfParameterizedAttribute:NSAccessibilityAttributedStringForRangeParameterizedAttribute ofUIElement:element parameter:rangeWrapper.AXValue];
 	return [attributedString attributedStringByUsingAppKitAttributes];
+}
+
++ (NSValue *)boundsOfUIElement:(AXUIElementRef)element forRange:(NSRange)range
+{
+	AXValueWrapper *rangeWrapper = [AXValueWrapper wrapperWithNSValue:[NSValue valueWithRange:range]];
+	AXValueRef boundsRef = (AXValueRef)[UIElementUtilities valueOfParameterizedAttribute:NSAccessibilityBoundsForRangeParameterizedAttribute ofUIElement:element parameter:rangeWrapper.AXValue];
+	AXValueWrapper *boundsWrapper = [AXValueWrapper wrapperWithAXValueRef:boundsRef];
+	return boundsWrapper.value;
 }
 
 @end
