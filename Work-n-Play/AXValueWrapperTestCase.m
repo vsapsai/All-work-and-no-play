@@ -52,4 +52,24 @@
 	STAssertTrue([otherRangeWrapper.value isEqualToValue:rangeValue], nil);
 }
 
+#pragma mark -
+
+- (void)testRectAXValue
+{
+	CGRect rect = CGRectMake(7.0, 8.0, 12.0, 42.0);
+	AXValueRef rectValueRef = AXValueCreate(kAXValueCGRectType, &rect);
+	AXValueWrapper *rectWrapper = [AXValueWrapper wrapperWithAXValueRef:rectValueRef];
+	CFRelease(rectValueRef);
+	NSValue *expectedRectValue = [NSValue valueWithRect:NSMakeRect(7.0, 8.0, 12.0, 42.0)];
+	STAssertEqualObjects(rectWrapper.value, expectedRectValue, nil);
+}
+
+- (void)testRectNSValue
+{
+	NSValue *rectValue = [NSValue valueWithRect:NSMakeRect(7.0, 8.0, 12.0, 42.0)];
+	AXValueWrapper *rectWrapper = [AXValueWrapper wrapperWithNSValue:rectValue];
+	AXValueWrapper *otherRectWrapper = [AXValueWrapper wrapperWithAXValueRef:rectWrapper.AXValue];
+	STAssertEqualObjects(otherRectWrapper.value, rectValue, nil);
+}
+
 @end

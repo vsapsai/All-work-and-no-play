@@ -71,6 +71,12 @@
 			CFRange range = CFRangeMake(nsRange.location, nsRange.length);
 			result = AXValueCreate(kAXValueCFRangeType, &range);
 		}
+		else if (0 == strcmp(@encode(NSRect), valueType))
+		{
+			NSRect nsRect = [nsValue rectValue];
+			CGRect rect = NSRectToCGRect(nsRect);
+			result = AXValueCreate(kAXValueCGRectType, &rect);
+		}
 	}
 	return result;
 }
@@ -112,6 +118,15 @@
 						 @"Don't know how to convert to NSRange CFRange with negative location or length");
 				NSRange nsRange = NSMakeRange(range.location, range.length);
 				result = [NSValue valueWithRange:nsRange];
+				break;
+			}
+			case kAXValueCGRectType:
+			{
+				CGRect rect;
+				BOOL isSuccessfully = AXValueGetValue(valueRef, kAXValueCGRectType, &rect);
+				NSAssert(isSuccessfully, @"Incorrectly determined AXValueRef type");
+				NSRect nsRect = NSRectFromCGRect(rect);
+				result = [NSValue valueWithRect:nsRect];
 				break;
 			}
 				
