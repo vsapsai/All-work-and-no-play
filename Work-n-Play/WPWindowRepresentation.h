@@ -23,4 +23,7 @@
 
 - (NSBitmapImageRep *)windowImageRep;
 
+// Note that base is flipped too.
+- (NSPoint)convertFlippedScreenToBase:(NSPoint)flippedScreenPoint;
+
 @end

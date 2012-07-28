@@ -63,17 +63,6 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	return (([windows count] > 0) ? [windows objectAtIndex:0] : nil);
 }
 
-- (void)storeFrontMostWindowScreenshot:(pid_t)applicationPid
-{
-	NSArray *windows = [WPWindowRepresentation windowRepresentationsForApplicationWithPid:applicationPid];
-	if ([windows count] > 0)
-	{
-		WPWindowRepresentation *frontMostWindow = [windows objectAtIndex:0];
-		NSBitmapImageRep *windowScreenShot = [frontMostWindow windowImageRep];
-		[[windowScreenShot TIFFRepresentation] writeToFile:@"/Users/vsapsay/Desktop/xcode.tiff" atomically:YES];
-	}
-}
-
 - (NSImage *)imageWithImageRep:(NSImageRep *)imageRep
 {
 	NSImage *result = nil;
@@ -85,27 +74,25 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	return result;
 }
 
-- (void)storeWindowScreenshot:(WPWindowRepresentation *)window withTestingStuffInRect:(NSRect)rect
+- (void)drawAttributedString:(NSAttributedString *)attributedString inRect:(NSRect)rect inImage:(NSImage *)image
 {
-	NSBitmapImageRep *windowImageRep = [window windowImageRep];
-	NSImage *windowImage = [self imageWithImageRep:windowImageRep];
-
-	// Draw testing stuff.
-	[windowImage lockFocusFlipped:YES];
+	[image lockFocusFlipped:YES];
 	[NSGraphicsContext saveGraphicsState];
-	NSRect windowBounds = window.windowBounds;
-	NSRect rectInWindow = NSMakeRect(rect.origin.x - windowBounds.origin.x, rect.origin.y - windowBounds.origin.y, rect.size.width, rect.size.height);
-	[[NSColor greenColor] set];
-	NSRectFill(rectInWindow);
-	[NSGraphicsContext restoreGraphicsState];
-	[windowImage unlockFocus];
 
-	WPImageWindow *imageWindow = [[WPImageWindow alloc] initWithImage:windowImage];
-	NSPoint topLeftWindowPoint = [[imageWindow screen] convertFlippedPoint:windowBounds.origin];
+	[[NSColor whiteColor] set];
+	NSRectFill(rect);
+	[attributedString drawInRect:rect];
+
+	[NSGraphicsContext restoreGraphicsState];
+	[image unlockFocus];
+}
+
+- (void)displaySnapshot:(NSImage *)snapshot ofWindow:(WPWindowRepresentation *)window
+{
+	WPImageWindow *imageWindow = [[WPImageWindow alloc] initWithImage:snapshot];
+	NSPoint topLeftWindowPoint = [[imageWindow screen] convertFlippedPoint:window.windowBounds.origin];
 	[imageWindow setFrameTopLeftPoint:topLeftWindowPoint];
 	[imageWindow orderFront:nil];
-//	// Store image.
-//	[[windowImage TIFFRepresentation] writeToFile:@"/Users/vsapsay/Desktop/xcode.tiff" atomically:YES];
 }
 
 - (IBAction)run:(id)sender
@@ -114,30 +101,38 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	pid_t applicationPid = application.processIdentifier;
 	if (-1 != applicationPid)
 	{
-		//[self storeFrontMostWindowScreenshot:applicationPid];
-
 		AXUIElementWrapper *applicationElement = [AXUIElementWrapper wrapperForApplication:applicationPid];
 		if (nil != applicationElement)
 		{
 			AXUIElementWrapper *textAreaElement = [self textAreaElement:applicationElement];
 			if (nil != textAreaElement)
 			{
-				NSValue *visibleRange = [textAreaElement visibleCharacterRange];
-				if (nil != visibleRange)
+				NSValue *visibleRangeValue = [textAreaElement visibleCharacterRange];
+				if (nil != visibleRangeValue)
 				{
-					NSValue *bounds = [textAreaElement boundsForRange:[visibleRange rangeValue]];
-					if (nil != bounds)
-					{
-						NSRect boundsRect = [bounds rectValue];
-						//NSLog(@"visible rect = %@", NSStringFromRect(boundsRect));
-						WPWindowRepresentation *window = [self frontMostVisibleWindowForApplication:applicationPid];
-						[self storeWindowScreenshot:window withTestingStuffInRect:boundsRect];
-					}
+					WPWindowRepresentation *window = [self frontMostVisibleWindowForApplication:applicationPid];
+					NSImage *windowImage = [self imageWithImageRep:[window windowImageRep]];
+
+					// Obtain text to draw.
+					NSRange visibleRange = [visibleRangeValue rangeValue];
+					NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:visibleRange];
+					textAreaContent = [self allWorkAndNoPlayStringFrom:textAreaContent];
+
+					// Obtain text position.
+					NSValue *bounds = [textAreaElement boundsForRange:visibleRange];
+					NSAssert(nil != bounds, @"I am sick of nested ifs, let's assume nothing wrong will happen");
+					NSRect boundsRect = [bounds rectValue];
+					boundsRect.origin = [window convertFlippedScreenToBase:boundsRect.origin];
+					
+					// Draw attributed string.
+					[self drawAttributedString:textAreaContent inRect:boundsRect inImage:windowImage];
+					
+					[self displaySnapshot:windowImage ofWindow:window];
 				}
 
-				NSString *text = [textAreaElement elementValue];
-				NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:NSMakeRange(0, [text length])];
-				[[self.textView textStorage] setAttributedString:[self allWorkAndNoPlayStringFrom:textAreaContent]];
+//				NSString *text = [textAreaElement elementValue];
+//				NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:NSMakeRange(0, [text length])];
+//				[[self.textView textStorage] setAttributedString:[self allWorkAndNoPlayStringFrom:textAreaContent]];
 			}
 			else
 			{

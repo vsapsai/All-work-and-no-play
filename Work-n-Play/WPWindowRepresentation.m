@@ -88,4 +88,13 @@
 	return result;
 }
 
+#pragma mark -
+
+- (NSPoint)convertFlippedScreenToBase:(NSPoint)flippedScreenPoint
+{
+	NSRect windowRect = self.windowBounds;
+	NSPoint result = NSMakePoint(flippedScreenPoint.x - windowRect.origin.x, flippedScreenPoint.y - windowRect.origin.y);
+	return result;
+}
+
 @end
