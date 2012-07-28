@@ -77,6 +77,18 @@
 			CGRect rect = NSRectToCGRect(nsRect);
 			result = AXValueCreate(kAXValueCGRectType, &rect);
 		}
+		else if (0 == strcmp(@encode(NSPoint), valueType))
+		{
+			NSPoint nsPoint = [nsValue pointValue];
+			CGPoint point = NSPointToCGPoint(nsPoint);
+			result = AXValueCreate(kAXValueCGPointType, &point);
+		}
+		else if (0 == strcmp(@encode(NSSize), valueType))
+		{
+			NSSize nsSize = [nsValue sizeValue];
+			CGSize size = NSSizeToCGSize(nsSize);
+			result = AXValueCreate(kAXValueCGSizeType, &size);
+		}
 	}
 	return result;
 }
@@ -129,7 +141,25 @@
 				result = [NSValue valueWithRect:nsRect];
 				break;
 			}
-				
+			case kAXValueCGPointType:
+			{
+				CGPoint point;
+				BOOL isSuccessfully = AXValueGetValue(valueRef, kAXValueCGPointType, &point);
+				NSAssert(isSuccessfully, @"Incorrectly determined AXValueRef type");
+				NSPoint nsPoint = NSPointFromCGPoint(point);
+				result = [NSValue valueWithPoint:nsPoint];
+				break;
+			}
+			case kAXValueCGSizeType:
+			{
+				CGSize size;
+				BOOL isSuccessfully = AXValueGetValue(valueRef, kAXValueCGSizeType, &size);
+				NSAssert(isSuccessfully, @"Incorrectly determined AXValueRef type");
+				NSSize nsSize = NSSizeFromCGSize(size);
+				result = [NSValue valueWithSize:nsSize];
+				break;
+			}
+
 			default:
 				break;
 		}

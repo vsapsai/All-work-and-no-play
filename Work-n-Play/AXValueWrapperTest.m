@@ -72,4 +72,44 @@
 	STAssertEqualObjects(otherRectWrapper.value, rectValue, nil);
 }
 
+#pragma mark -
+
+- (void)testPointAXValue
+{
+	CGPoint point = CGPointMake(4.0, 2.0);
+	AXValueRef pointValueRef = AXValueCreate(kAXValueCGPointType, &point);
+	AXValueWrapper *pointWrapper = [AXValueWrapper wrapperWithAXValueRef:pointValueRef];
+	CFRelease(pointValueRef);
+	NSValue *expectedPointValue = [NSValue valueWithPoint:NSMakePoint(4.0, 2.0)];
+	STAssertEqualObjects(pointWrapper.value, expectedPointValue, nil);
+}
+
+- (void)testPointNSValue
+{
+	NSValue *pointValue = [NSValue valueWithPoint:NSMakePoint(4.0, 2.0)];
+	AXValueWrapper *pointWrapper = [AXValueWrapper wrapperWithNSValue:pointValue];
+	AXValueWrapper *otherPointWrapper = [AXValueWrapper wrapperWithAXValueRef:pointWrapper.AXValue];
+	STAssertEqualObjects(otherPointWrapper.value, pointValue, nil);
+}
+
+#pragma mark -
+
+- (void)testSizeAXValue
+{
+	CGSize size = CGSizeMake(33.0, 81.0);
+	AXValueRef sizeValueRef = AXValueCreate(kAXValueCGSizeType, &size);
+	AXValueWrapper *sizeWrapper = [AXValueWrapper wrapperWithAXValueRef:sizeValueRef];
+	CFRelease(sizeValueRef);
+	NSValue *expectedSizeValue = [NSValue valueWithSize:NSMakeSize(33.0, 81.0)];
+	STAssertEqualObjects(sizeWrapper.value, expectedSizeValue, nil);
+}
+
+- (void)testSizeNSValue
+{
+	NSValue *sizeValue = [NSValue valueWithSize:NSMakeSize(33.0, 81.0)];
+	AXValueWrapper *sizeWrapper = [AXValueWrapper wrapperWithNSValue:sizeValue];
+	AXValueWrapper *otherSizeWrapper = [AXValueWrapper wrapperWithAXValueRef:sizeWrapper.AXValue];
+	STAssertEqualObjects(otherSizeWrapper.value, sizeValue, nil);
+}
+
 @end
