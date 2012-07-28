@@ -126,6 +126,20 @@
 	return rangeWrapper.value;
 }
 
+- (NSValue *)position
+{
+	AXValueRef positionRef = (AXValueRef)[self attributeValue:NSAccessibilityPositionAttribute];
+	AXValueWrapper *positionWrapper = [AXValueWrapper wrapperWithAXValueRef:positionRef];
+	return positionWrapper.value;
+}
+
+- (NSValue *)size
+{
+	AXValueRef sizeRef = (AXValueRef)[self attributeValue:NSAccessibilitySizeAttribute];
+	AXValueWrapper *sizeWrapper = [AXValueWrapper wrapperWithAXValueRef:sizeRef];
+	return sizeWrapper.value;
+}
+
 #pragma mark -
 #pragma mark Parameterized attributes
 
@@ -163,6 +177,19 @@
 	AXValueRef boundsRef = (AXValueRef)[self parameterizedAttributeValue:NSAccessibilityBoundsForRangeParameterizedAttribute forParameter:rangeWrapper.AXValue];
 	AXValueWrapper *boundsWrapper = [AXValueWrapper wrapperWithAXValueRef:boundsRef];
 	return boundsWrapper.value;
+}
+
+- (NSNumber *)lineForIndex:(NSInteger)index
+{
+	NSNumber *line = [self parameterizedAttributeValue:NSAccessibilityLineForIndexParameterizedAttribute forParameter:(CFNumberRef)[NSNumber numberWithInteger:index]];
+	return line;
+}
+
+- (NSValue *)rangeForLine:(NSInteger)line
+{
+	AXValueRef rangeRef = (AXValueRef)[self parameterizedAttributeValue:NSAccessibilityRangeForLineParameterizedAttribute forParameter:(CFNumberRef)[NSNumber numberWithInteger:line]];
+	AXValueWrapper *rangeWrapper = [AXValueWrapper wrapperWithAXValueRef:rangeRef];
+	return rangeWrapper.value;
 }
 
 @end

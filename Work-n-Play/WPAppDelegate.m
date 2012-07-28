@@ -74,6 +74,61 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	return result;
 }
 
+// Returns visible range but with the first and the last visible lines omitted.
+- (NSRange)visibleRangeWithTrimmedLinesForUIElement:(AXUIElementWrapper *)element
+{
+	NSValue *visibleRangeValue = [element visibleCharacterRange];
+	NSAssert(nil != visibleRangeValue, @"UI element should provide visible range");
+	NSRange visibleRange = [visibleRangeValue rangeValue];
+	NSRange result = visibleRange;
+	if (result.length > 0)
+	{
+		do
+		{
+			// Trim the last line.
+			NSNumber *lastLine = [element lineForIndex:(NSMaxRange(result) - 1)];
+			NSAssert(nil != lastLine, @"UI element should provide line for index");
+			NSValue *lastLineRangeValue = [element rangeForLine:[lastLine integerValue]];
+			NSAssert(nil != lastLineRangeValue, @"UI element should provide range for line");
+			NSRange lastLineRange = [lastLineRangeValue rangeValue];
+			BOOL hasVisibleRangeOtherLinesExceptLastLine = (lastLineRange.location >= result.location);
+			if (hasVisibleRangeOtherLinesExceptLastLine)
+			{
+				// result.location + result.length == lastLineRange.location
+				result.length = lastLineRange.location - result.location;
+			}
+			else
+			{
+				// Visible range is too small.
+				result.length = 0;
+				break;
+			}
+
+			// Trim the first line.
+			NSNumber *firstLine = [element lineForIndex:result.location];
+			NSAssert(nil != firstLine, @"UI element should provide line for index");
+			NSValue *firstLineRangeValue = [element rangeForLine:[firstLine integerValue]];
+			NSAssert(nil != firstLineRangeValue, @"UI element should provide range for line");
+			NSRange firstLineRange = [firstLineRangeValue rangeValue];
+			BOOL hasVisibleRangeOtherLinesExceptFirstLine = (NSMaxRange(firstLineRange) < NSMaxRange(result));
+			if (hasVisibleRangeOtherLinesExceptFirstLine)
+			{
+				NSInteger offset = NSMaxRange(firstLineRange) - result.location;
+				result.location += offset;
+				result.length -= offset;
+			}
+			else
+			{
+				// Visible range is too small.
+				result.length = 0;
+				break;
+			}
+		}
+		while (NO);
+	}
+	return result;
+}
+
 - (void)drawAttributedString:(NSAttributedString *)attributedString inRect:(NSRect)rect inImage:(NSImage *)image
 {
 	[image lockFocusFlipped:YES];
@@ -107,28 +162,24 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 			AXUIElementWrapper *textAreaElement = [self textAreaElement:applicationElement];
 			if (nil != textAreaElement)
 			{
-				NSValue *visibleRangeValue = [textAreaElement visibleCharacterRange];
-				if (nil != visibleRangeValue)
-				{
-					WPWindowRepresentation *window = [self frontMostVisibleWindowForApplication:applicationPid];
-					NSImage *windowImage = [self imageWithImageRep:[window windowImageRep]];
+				WPWindowRepresentation *window = [self frontMostVisibleWindowForApplication:applicationPid];
+				NSImage *windowImage = [self imageWithImageRep:[window windowImageRep]];
 
-					// Obtain text to draw.
-					NSRange visibleRange = [visibleRangeValue rangeValue];
-					NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:visibleRange];
-					textAreaContent = [self allWorkAndNoPlayStringFrom:textAreaContent];
+				// Obtain text to draw.
+				NSRange visibleRange = [self visibleRangeWithTrimmedLinesForUIElement:textAreaElement];
+				NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:visibleRange];
+				textAreaContent = [self allWorkAndNoPlayStringFrom:textAreaContent];
 
-					// Obtain text position.
-					NSValue *bounds = [textAreaElement boundsForRange:visibleRange];
-					NSAssert(nil != bounds, @"I am sick of nested ifs, let's assume nothing wrong will happen");
-					NSRect boundsRect = [bounds rectValue];
-					boundsRect.origin = [window convertFlippedScreenToBase:boundsRect.origin];
-					
-					// Draw attributed string.
-					[self drawAttributedString:textAreaContent inRect:boundsRect inImage:windowImage];
-					
-					[self displaySnapshot:windowImage ofWindow:window];
-				}
+				// Obtain text position.
+				NSValue *bounds = [textAreaElement boundsForRange:visibleRange];
+				NSAssert(nil != bounds, @"I am sick of nested ifs, let's assume nothing wrong will happen");
+				NSRect boundsRect = [bounds rectValue];
+				boundsRect.origin = [window convertFlippedScreenToBase:boundsRect.origin];
+				
+				// Draw attributed string.
+				[self drawAttributedString:textAreaContent inRect:boundsRect inImage:windowImage];
+				
+				[self displaySnapshot:windowImage ofWindow:window];
 
 //				NSString *text = [textAreaElement elementValue];
 //				NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:NSMakeRange(0, [text length])];

@@ -32,6 +32,10 @@
 - (NSString *)role;
 // NSRange value.  NSAccessibilityVisibleCharacterRangeAttribute
 - (NSValue *)visibleCharacterRange;
+// NSPoint value.  NSAccessibilityPositionAttribute
+- (NSValue *)position;
+// NSSize value.  NSAccessibilitySizeAttribute
+- (NSValue *)size;
 
 // NSArray of NSString.
 - (NSArray *)parameterizedAttributeNames;
@@ -39,4 +43,8 @@
 - (NSAttributedString *)attributedStringForRange:(NSRange)range;
 // NSRect value. Rect is specified in screen coordinates.  NSAccessibilityBoundsForRangeParameterizedAttribute
 - (NSValue *)boundsForRange:(NSRange)range;
+// NSAccessibilityLineForIndexParameterizedAttribute
+- (NSNumber *)lineForIndex:(NSInteger)index;
+// NSRange value.  NSAccessibilityRangeForLineParameterizedAttribute
+- (NSValue *)rangeForLine:(NSInteger)line;
 @end
