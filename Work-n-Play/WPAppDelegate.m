@@ -10,6 +10,8 @@
 #import "AXUIElementWrapper.h"
 #import "WPPatternApplicator.h"
 #import "WPWindowRepresentation.h"
+#import "WPImageWindow.h"
+#import "NSScreen+WPConvertingCoordinates.h"
 
 
 static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.Xcode";
@@ -98,8 +100,12 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	[NSGraphicsContext restoreGraphicsState];
 	[windowImage unlockFocus];
 
-	// Store image.
-	[[windowImage TIFFRepresentation] writeToFile:@"/Users/vsapsay/Desktop/xcode.tiff" atomically:YES];
+	WPImageWindow *imageWindow = [[WPImageWindow alloc] initWithImage:windowImage];
+	NSPoint topLeftWindowPoint = [[imageWindow screen] convertFlippedPoint:windowBounds.origin];
+	[imageWindow setFrameTopLeftPoint:topLeftWindowPoint];
+	[imageWindow orderFront:nil];
+//	// Store image.
+//	[[windowImage TIFFRepresentation] writeToFile:@"/Users/vsapsay/Desktop/xcode.tiff" atomically:YES];
 }
 
 - (IBAction)run:(id)sender

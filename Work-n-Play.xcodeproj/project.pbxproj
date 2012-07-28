@@ -29,6 +29,8 @@
 		F7961ABF15B1B3F000FE870A /* NSAttributedString+Accessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = F7961ABE15B1B3F000FE870A /* NSAttributedString+Accessibility.m */; };
 		F7961AC315B1B70300FE870A /* NSAttributedString+AccessibilityTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7961AC215B1B70300FE870A /* NSAttributedString+AccessibilityTest.m */; };
 		F7961AC415B1BC1C00FE870A /* NSAttributedString+Accessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = F7961ABE15B1B3F000FE870A /* NSAttributedString+Accessibility.m */; };
+		F7BB21F815C469FE00AD26AE /* WPImageWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BB21F715C469FE00AD26AE /* WPImageWindow.m */; };
+		F7BB21FC15C470E800AD26AE /* NSScreen+WPConvertingCoordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BB21FB15C470E800AD26AE /* NSScreen+WPConvertingCoordinates.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,10 @@
 		F7961ABD15B1B3F000FE870A /* NSAttributedString+Accessibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Accessibility.h"; sourceTree = "<group>"; };
 		F7961ABE15B1B3F000FE870A /* NSAttributedString+Accessibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Accessibility.m"; sourceTree = "<group>"; };
 		F7961AC215B1B70300FE870A /* NSAttributedString+AccessibilityTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+AccessibilityTest.m"; sourceTree = "<group>"; };
+		F7BB21F615C469FE00AD26AE /* WPImageWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPImageWindow.h; sourceTree = "<group>"; };
+		F7BB21F715C469FE00AD26AE /* WPImageWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPImageWindow.m; sourceTree = "<group>"; };
+		F7BB21FA15C470E800AD26AE /* NSScreen+WPConvertingCoordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScreen+WPConvertingCoordinates.h"; sourceTree = "<group>"; };
+		F7BB21FB15C470E800AD26AE /* NSScreen+WPConvertingCoordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScreen+WPConvertingCoordinates.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +158,10 @@
 				F73E77A615A9984100CC3042 /* WPAppDelegate.m */,
 				F794390115BB4E3E00E5487A /* WPWindowRepresentation.h */,
 				F794390215BB4E3E00E5487A /* WPWindowRepresentation.m */,
+				F7BB21F615C469FE00AD26AE /* WPImageWindow.h */,
+				F7BB21F715C469FE00AD26AE /* WPImageWindow.m */,
+				F7BB21FA15C470E800AD26AE /* NSScreen+WPConvertingCoordinates.h */,
+				F7BB21FB15C470E800AD26AE /* NSScreen+WPConvertingCoordinates.m */,
 				F794390815BC19B900E5487A /* Pattern Applicator */,
 				F794390715BC197800E5487A /* Accessibility Wrappers */,
 				F73E77A815A9984200CC3042 /* MainMenu.xib */,
@@ -327,6 +337,8 @@
 				F79438FB15BB278B00E5487A /* WPToken.m in Sources */,
 				F794390315BB4E3F00E5487A /* WPWindowRepresentation.m in Sources */,
 				F794390615BC026500E5487A /* AXUIElementWrapper.m in Sources */,
+				F7BB21F815C469FE00AD26AE /* WPImageWindow.m in Sources */,
+				F7BB21FC15C470E800AD26AE /* NSScreen+WPConvertingCoordinates.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
