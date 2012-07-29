@@ -35,26 +35,27 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	// Insert code here to initialize your application
 }
 
-- (AXUIElementWrapper *)textAreaElement:(AXUIElementWrapper *)uiElement
+- (void)collectTextAreaElements:(AXUIElementWrapper *)uiElement inAccumulator:(NSMutableArray *)accumulator
 {
-	AXUIElementWrapper *result = nil;
 	if ([[uiElement role] isEqualToString:NSAccessibilityTextAreaRole])
 	{
-		result = uiElement;
+		[accumulator addObject:uiElement];
 	}
 	else
 	{
 		NSArray *children = [uiElement children];
 		for (AXUIElementWrapper *child in children)
 		{
-			result = [self textAreaElement:child];
-			if (nil != result)
-			{
-				break;
-			}
+			[self collectTextAreaElements:child inAccumulator:accumulator];
 		}
 	}
-	return result;
+}
+
+- (NSArray *)applicationTextAreaElements:(AXUIElementWrapper *)applicationElement
+{
+	NSMutableArray *result = [NSMutableArray array];
+	[self collectTextAreaElements:applicationElement inAccumulator:result];
+	return [[result copy] autorelease];
 }
 
 - (WPWindowRepresentation *)frontMostVisibleWindowForApplication:(pid_t)applicationPid
@@ -159,12 +160,12 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 		AXUIElementWrapper *applicationElement = [AXUIElementWrapper wrapperForApplication:applicationPid];
 		if (nil != applicationElement)
 		{
-			AXUIElementWrapper *textAreaElement = [self textAreaElement:applicationElement];
-			if (nil != textAreaElement)
-			{
-				WPWindowRepresentation *window = [self frontMostVisibleWindowForApplication:applicationPid];
-				NSImage *windowImage = [self imageWithImageRep:[window windowImageRep]];
+			WPWindowRepresentation *window = [self frontMostVisibleWindowForApplication:applicationPid];
+			NSImage *windowImage = [self imageWithImageRep:[window windowImageRep]];
 
+			NSArray *textAreaElements = [self applicationTextAreaElements:applicationElement];
+			for (AXUIElementWrapper *textAreaElement in textAreaElements)
+			{
 				// Obtain text to draw.
 				NSRange visibleRange = [self visibleRangeWithTrimmedLinesForUIElement:textAreaElement];
 				NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:visibleRange];
@@ -179,13 +180,13 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 				// Draw attributed string.
 				[self drawAttributedString:textAreaContent inRect:boundsRect inImage:windowImage];
 				
-				[self displaySnapshot:windowImage ofWindow:window];
-
 //				NSString *text = [textAreaElement elementValue];
 //				NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:NSMakeRange(0, [text length])];
 //				[[self.textView textStorage] setAttributedString:[self allWorkAndNoPlayStringFrom:textAreaContent]];
 			}
-			else
+
+			[self displaySnapshot:windowImage ofWindow:window];
+			if (0 == [textAreaElements count])
 			{
 				NSLog(@"Didn't found text area");
 			}
