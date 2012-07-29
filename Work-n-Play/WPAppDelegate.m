@@ -10,6 +10,7 @@
 #import "AXUIElementWrapper.h"
 #import "WPPatternApplicator.h"
 #import "WPWindowRepresentation.h"
+#import "WPWindowScreenshot.h"
 #import "WPImageWindow.h"
 #import "NSScreen+WPConvertingCoordinates.h"
 
@@ -62,17 +63,6 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 {
 	NSArray *windows = [WPWindowRepresentation windowRepresentationsForApplicationWithPid:applicationPid];
 	return (([windows count] > 0) ? [windows objectAtIndex:0] : nil);
-}
-
-- (NSImage *)imageWithImageRep:(NSImageRep *)imageRep
-{
-	NSImage *result = nil;
-	if (nil != imageRep)
-	{
-		result = [[[NSImage alloc] initWithSize:imageRep.size] autorelease];
-		[result addRepresentation:imageRep];
-	}
-	return result;
 }
 
 // Returns visible range but with the first and the last visible lines omitted.
@@ -130,19 +120,6 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	return result;
 }
 
-- (void)drawAttributedString:(NSAttributedString *)attributedString inRect:(NSRect)rect inImage:(NSImage *)image
-{
-	[image lockFocusFlipped:YES];
-	[NSGraphicsContext saveGraphicsState];
-
-	[[NSColor whiteColor] set];
-	NSRectFill(rect);
-	[attributedString drawInRect:rect];
-
-	[NSGraphicsContext restoreGraphicsState];
-	[image unlockFocus];
-}
-
 - (void)displaySnapshot:(NSImage *)snapshot ofWindow:(WPWindowRepresentation *)window
 {
 	WPImageWindow *imageWindow = [[WPImageWindow alloc] initWithImage:snapshot];
@@ -161,7 +138,7 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 		if (nil != applicationElement)
 		{
 			WPWindowRepresentation *window = [self frontMostVisibleWindowForApplication:applicationPid];
-			NSImage *windowImage = [self imageWithImageRep:[window windowImageRep]];
+			WPWindowScreenshot *windowScreenshot = [[[WPWindowScreenshot alloc] initWithWindowRepresentation:window] autorelease];
 
 			NSArray *textAreaElements = [self applicationTextAreaElements:applicationElement];
 			for (AXUIElementWrapper *textAreaElement in textAreaElements)
@@ -175,17 +152,16 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 				NSValue *bounds = [textAreaElement boundsForRange:visibleRange];
 				NSAssert(nil != bounds, @"I am sick of nested ifs, let's assume nothing wrong will happen");
 				NSRect boundsRect = [bounds rectValue];
-				boundsRect.origin = [window convertFlippedScreenToBase:boundsRect.origin];
-				
+
 				// Draw attributed string.
-				[self drawAttributedString:textAreaContent inRect:boundsRect inImage:windowImage];
-				
+				[windowScreenshot drawAttributedString:textAreaContent inRect:boundsRect];
+
 //				NSString *text = [textAreaElement elementValue];
 //				NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:NSMakeRange(0, [text length])];
 //				[[self.textView textStorage] setAttributedString:[self allWorkAndNoPlayStringFrom:textAreaContent]];
 			}
 
-			[self displaySnapshot:windowImage ofWindow:window];
+			[self displaySnapshot:windowScreenshot.windowImage ofWindow:window];
 			if (0 == [textAreaElements count])
 			{
 				NSLog(@"Didn't found text area");

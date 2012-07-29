@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F722BAEB15C546ED00A121DC /* WPGradientBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F722BAEA15C546ED00A121DC /* WPGradientBar.m */; };
+		F722BAEF15C54C3E00A121DC /* WPWindowScreenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = F722BAEE15C54C3E00A121DC /* WPWindowScreenshot.m */; };
 		F739227815B0DD1300A064FE /* AXValueWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F739227715B0DD1300A064FE /* AXValueWrapper.m */; };
 		F739228415B0DFB000A064FE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F739228315B0DFB000A064FE /* SenTestingKit.framework */; };
 		F739228515B0DFB000A064FE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F73E779315A9984100CC3042 /* Cocoa.framework */; };
@@ -37,6 +38,8 @@
 /* Begin PBXFileReference section */
 		F722BAE915C546ED00A121DC /* WPGradientBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPGradientBar.h; sourceTree = "<group>"; };
 		F722BAEA15C546ED00A121DC /* WPGradientBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPGradientBar.m; sourceTree = "<group>"; };
+		F722BAED15C54C3E00A121DC /* WPWindowScreenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPWindowScreenshot.h; sourceTree = "<group>"; };
+		F722BAEE15C54C3E00A121DC /* WPWindowScreenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPWindowScreenshot.m; sourceTree = "<group>"; };
 		F739227615B0DD1300A064FE /* AXValueWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXValueWrapper.h; sourceTree = "<group>"; };
 		F739227715B0DD1300A064FE /* AXValueWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXValueWrapper.m; sourceTree = "<group>"; };
 		F739227B15B0DF3100A064FE /* AXValueWrapperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXValueWrapperTest.m; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				F73E77A615A9984100CC3042 /* WPAppDelegate.m */,
 				F794390115BB4E3E00E5487A /* WPWindowRepresentation.h */,
 				F794390215BB4E3E00E5487A /* WPWindowRepresentation.m */,
+				F722BAED15C54C3E00A121DC /* WPWindowScreenshot.h */,
+				F722BAEE15C54C3E00A121DC /* WPWindowScreenshot.m */,
 				F7BB21F615C469FE00AD26AE /* WPImageWindow.h */,
 				F7BB21F715C469FE00AD26AE /* WPImageWindow.m */,
 				F722BAE915C546ED00A121DC /* WPGradientBar.h */,
@@ -345,6 +350,7 @@
 				F7BB21F815C469FE00AD26AE /* WPImageWindow.m in Sources */,
 				F7BB21FC15C470E800AD26AE /* NSScreen+WPConvertingCoordinates.m in Sources */,
 				F722BAEB15C546ED00A121DC /* WPGradientBar.m in Sources */,
+				F722BAEF15C54C3E00A121DC /* WPWindowScreenshot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
