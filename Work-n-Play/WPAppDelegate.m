@@ -128,6 +128,27 @@ static NSString *const kWPContentKey = @"content";
 	return result;
 }
 
+- (NSAttributedString *)attributedStringForRange:(NSRange)range forTextAreaElement:(AXUIElementWrapper *)textAreaElement atIndex:(NSInteger)textAreaIndex
+{
+	NSParameterAssert(nil != textAreaElement);
+	BOOL canUsePredefinedContent = ((0 <= textAreaIndex) && (textAreaIndex < [self.predefinedTextAreasContent count]));
+	if (canUsePredefinedContent)
+	{
+		NSAttributedString *predefinedContent = [[self.predefinedTextAreasContent objectAtIndex:textAreaIndex] objectForKey:kWPContentKey];
+		NSString *actualPlainContent = [textAreaElement elementValue];
+		BOOL isPredefinedContentCorrespondToActual = [predefinedContent.string isEqualToString:actualPlainContent];
+		if (isPredefinedContentCorrespondToActual)
+		{
+			return [predefinedContent attributedSubstringFromRange:range];
+		}
+		else
+		{
+			NSLog(@"Predefined content doesn't correspond to actual text area content");
+		}
+	}
+	return [textAreaElement attributedStringForRange:range];
+}
+
 - (void)displaySnapshot:(NSImage *)snapshot ofWindow:(WPWindowRepresentation *)window
 {
 	WPImageWindow *imageWindow = [[WPImageWindow alloc] initWithImage:snapshot];
@@ -149,11 +170,13 @@ static NSString *const kWPContentKey = @"content";
 			WPWindowScreenshot *windowScreenshot = [[[WPWindowScreenshot alloc] initWithWindowRepresentation:window] autorelease];
 
 			NSArray *textAreaElements = [self applicationTextAreaElements:applicationElement];
-			for (AXUIElementWrapper *textAreaElement in textAreaElements)
+			for (NSInteger i = 0; i < [textAreaElements count]; i++)
 			{
+				AXUIElementWrapper *textAreaElement = [textAreaElements objectAtIndex:i];
+
 				// Obtain text to draw.
 				NSRange visibleRange = [self visibleRangeWithTrimmedLinesForUIElement:textAreaElement];
-				NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:visibleRange];
+				NSAttributedString *textAreaContent = [self attributedStringForRange:visibleRange forTextAreaElement:textAreaElement atIndex:i];
 				textAreaContent = [self allWorkAndNoPlayStringFrom:textAreaContent];
 
 				// Obtain text position.
