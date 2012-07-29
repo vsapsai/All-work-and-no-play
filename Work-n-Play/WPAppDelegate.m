@@ -17,6 +17,10 @@
 
 static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.Xcode";
 
+// These keys are also specified in MainMenu.xib for array controller.
+static NSString *const kWPTitleKey = @"title";
+static NSString *const kWPContentKey = @"content";
+
 @interface WPAppDelegate()
 - (NSAttributedString *)allWorkAndNoPlayStringFrom:(NSAttributedString *)string;
 @end
@@ -24,17 +28,21 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 @implementation WPAppDelegate
 
 @synthesize window = _window;
-@synthesize textView = _textView;
+@synthesize arrayController = _arrayController;
+@synthesize predefinedTextAreasContent = _predefinedTextAreasContent;
 
 - (void)dealloc
 {
+	self.predefinedTextAreasContent = nil;
     [super dealloc];
 }
 	
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	// Insert code here to initialize your application
+	self.predefinedTextAreasContent = [NSMutableArray array];
 }
+
+#pragma mark -
 
 - (void)collectTextAreaElements:(AXUIElementWrapper *)uiElement inAccumulator:(NSMutableArray *)accumulator
 {
@@ -128,7 +136,7 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	[imageWindow orderFront:nil];
 }
 
-- (IBAction)run:(id)sender
+- (IBAction)showScreenshot:(id)sender
 {
 	NSRunningApplication *application = [[NSRunningApplication runningApplicationsWithBundleIdentifier:kWPObservedApplicationBundleIdentifier] lastObject];
 	pid_t applicationPid = application.processIdentifier;
@@ -155,10 +163,6 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 
 				// Draw attributed string.
 				[windowScreenshot drawAttributedString:textAreaContent inRect:boundsRect];
-
-//				NSString *text = [textAreaElement elementValue];
-//				NSAttributedString *textAreaContent = [textAreaElement attributedStringForRange:NSMakeRange(0, [text length])];
-//				[[self.textView textStorage] setAttributedString:[self allWorkAndNoPlayStringFrom:textAreaContent]];
 			}
 
 			[self displaySnapshot:windowScreenshot.windowImage ofWindow:window];
@@ -176,6 +180,13 @@ static NSString *const kWPObservedApplicationBundleIdentifier = @"com.apple.dt.X
 	{
 		NSLog(@"%@ isn't launched", kWPObservedApplicationBundleIdentifier);
 	}
+}
+
+- (IBAction)addTextAreaContent:(id)sender
+{
+	NSAttributedString *emptyAttributedString = [[[NSAttributedString alloc] initWithString:@""] autorelease];
+	NSMutableDictionary *emptyRecord = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"Text Area", kWPTitleKey, emptyAttributedString, kWPContentKey, nil];
+	[self.arrayController addObject:emptyRecord];
 }
 
 #pragma mark -

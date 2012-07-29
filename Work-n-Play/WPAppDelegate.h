@@ -11,8 +11,10 @@
 @interface WPAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign, nonatomic) IBOutlet NSWindow *window;
-@property (assign, nonatomic) IBOutlet NSTextView *textView;
+@property (assign, nonatomic) IBOutlet NSArrayController *arrayController;
+@property (retain, nonatomic) NSMutableArray *predefinedTextAreasContent;
 
-- (IBAction)run:(id)sender;
+- (IBAction)showScreenshot:(id)sender;
+- (IBAction)addTextAreaContent:(id)sender;
 
 @end
