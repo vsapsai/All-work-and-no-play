@@ -2,6 +2,6 @@
 
 Result looks like this:
 
-![All work and no play makes Jack a dull boy](Screenshot.png)
+![All work and no play makes Jack a dull boy](https://bitbucket.org/vsapsai/all-work-and-no-play/raw/ec504a665bf9/Screenshot.png)
 
 [1]: http://en.wikipedia.org/wiki/The_Shining_(film)
