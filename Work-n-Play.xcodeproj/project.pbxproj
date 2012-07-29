@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F722BAEB15C546ED00A121DC /* WPGradientBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F722BAEA15C546ED00A121DC /* WPGradientBar.m */; };
 		F739227815B0DD1300A064FE /* AXValueWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F739227715B0DD1300A064FE /* AXValueWrapper.m */; };
 		F739228415B0DFB000A064FE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F739228315B0DFB000A064FE /* SenTestingKit.framework */; };
 		F739228515B0DFB000A064FE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F73E779315A9984100CC3042 /* Cocoa.framework */; };
@@ -34,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F722BAE915C546ED00A121DC /* WPGradientBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPGradientBar.h; sourceTree = "<group>"; };
+		F722BAEA15C546ED00A121DC /* WPGradientBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPGradientBar.m; sourceTree = "<group>"; };
 		F739227615B0DD1300A064FE /* AXValueWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXValueWrapper.h; sourceTree = "<group>"; };
 		F739227715B0DD1300A064FE /* AXValueWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXValueWrapper.m; sourceTree = "<group>"; };
 		F739227B15B0DF3100A064FE /* AXValueWrapperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXValueWrapperTest.m; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 				F794390215BB4E3E00E5487A /* WPWindowRepresentation.m */,
 				F7BB21F615C469FE00AD26AE /* WPImageWindow.h */,
 				F7BB21F715C469FE00AD26AE /* WPImageWindow.m */,
+				F722BAE915C546ED00A121DC /* WPGradientBar.h */,
+				F722BAEA15C546ED00A121DC /* WPGradientBar.m */,
 				F7BB21FA15C470E800AD26AE /* NSScreen+WPConvertingCoordinates.h */,
 				F7BB21FB15C470E800AD26AE /* NSScreen+WPConvertingCoordinates.m */,
 				F794390815BC19B900E5487A /* Pattern Applicator */,
@@ -339,6 +344,7 @@
 				F794390615BC026500E5487A /* AXUIElementWrapper.m in Sources */,
 				F7BB21F815C469FE00AD26AE /* WPImageWindow.m in Sources */,
 				F7BB21FC15C470E800AD26AE /* NSScreen+WPConvertingCoordinates.m in Sources */,
+				F722BAEB15C546ED00A121DC /* WPGradientBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
